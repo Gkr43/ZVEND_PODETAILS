@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: zvendpodetail
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: S4-BTP-BAS
+          url: https://my412338-api.s4hana.cloud.sap
+        app:
+          name: ZVEND_PO_DETAIL
+          description: Vendor portal PO detail
+          package: zapis_vend
+          transport: JCSK900195
+        exclude:
+          - /test/
